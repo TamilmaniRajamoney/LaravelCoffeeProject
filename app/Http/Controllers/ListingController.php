@@ -9,6 +9,7 @@ class ListingController extends Controller
 {
     //show list
     public function index(){
+        //  dd(request('tag'));
         $listings = Listing::all();
     return view('listings.index', compact('listings'));
       

@@ -1,3 +1,6 @@
+@include('partials._hero')
+     @include('partials._search')
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
