@@ -17,19 +17,43 @@ class ListingController extends Controller
 
 
     //show single list
-    // public function show(Listing $listing){
-    //     return View('listings.show',[
-    //         'listing'=>$listing
-    //     ]);
-    // }
+    public function show(Listing $listing){
+        return View('listings.show',[
+            'listing'=>$listing
+        ]);
+    }
 
-    public function show(listing $listing){
-        $listings = Listing::all();
-        return view('listings.show', compact('listings'));
-          
-                
-        
-         }
+    // public function show(listing $listing){
+    //     $listings = Listing::all();
+    //     return view('listings.show', compact('listings'));
+    //      }
+    
+//show create form 
+   public function create(){
+    return View('listings.create');
+   }
+
+
+//Store Listing data
+  public function store(Request $request){
+    //dd($request->all());
+    $formInput= $request->validate([
+    'coffeename'=>'required',
+    'title'=>'required',
+    'type'=>'required',
+    'category'=>'required',
+    'description'=>'required',
+    'email'=>'required',
+    'website'=>'required',
+    'location'=>'required',
+    ]);
+
+    Listing::create($formInput);
+
+    return redirect('/index');
+     
+  }
 
 
 }
+

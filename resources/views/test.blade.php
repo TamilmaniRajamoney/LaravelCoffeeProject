@@ -24,4 +24,6 @@ echo count($cars , 1);
 //echo $input;
 ?>
 <!-- <script src="/script.js"> </script> -->
+
+{{$listing}}
 </html>
