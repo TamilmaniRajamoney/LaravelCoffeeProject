@@ -27,19 +27,28 @@ Route::get('/', function () {
 // Route::post('/createRefund','App\Http\Controllers\RefundController@store');
 // Route::get('/datatable','App\Http\Controllers\TestController@index');
 
-// to get the list of jobs 
+// Get List of Coffees 
 Route::get('/index','App\Http\Controllers\ListingController@index');
 
- //to get the description of a coffee
+ //Get Description
 Route::get('/coffeeDesc','App\Http\Controllers\TestController@getDesc');
 
-//show create form 
+//Show Create Form 
 Route::get('/listings/create','App\Http\Controllers\ListingController@create');
 
-//store
+//Show Edit Form 
+Route::get('/listings/{listing}/edit','App\Http\Controllers\ListingController@edit');
+
+//Delete coffee 
+Route::delete('/listings/{listing}','App\Http\Controllers\ListingController@destroy');
+
+//Update coffee
+Route::put('/listings/{listing}','App\Http\Controllers\ListingController@update');
+
+//Store
 Route::post('/listings','App\Http\Controllers\ListingController@store');
 
-//single listing
+//Single listing
 Route::get('/listings/{listing}','App\Http\Controllers\ListingController@show');
 
 

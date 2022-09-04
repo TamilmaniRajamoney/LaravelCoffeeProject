@@ -18,11 +18,11 @@
                       <h3 class="text-2xl">
                           <a href="/listings/{{$listing->id}}">{{$listing->title}}</a>
                       </h3>
-                      <div class="text-xl font-bold mb-4">{{$listing->type}}</div>
+                      <div class="text-xl font-bold mb-4">{{$listing->coffeename}}</div>
                       <ul class="flex"> 
                           <li
                               class="flex items-center justify-center bg-black text-white rounded-xl py-1 px-3 mr-2 text-xs">
-                              <a href="#">Origin</a>
+                              <a href="#">{{$listing->category}}</a>
                           </li>
                           <li
                               class="flex items-center justify-center bg-black text-white rounded-xl py-1 px-3 mr-2 text-xs">
@@ -30,20 +30,25 @@
                           </li>
                           <li
                               class="flex items-center justify-center bg-black text-white rounded-xl py-1 px-3 mr-2 text-xs">
-                              <a href="#">Price</a>
+                              <a href="#">{{$listing->description}}</a>
                           </li>
                           <li
                               class="flex items-center justify-center bg-black text-white rounded-xl py-1 px-3 mr-2 text-xs">
-                              <a href="#">Know more</a>
+                              <a href="#">{{$listing->website}}</a>
                           </li>
                       </ul>
                       <div class="text-lg mt-4">
-                          <i class="fa-solid fa-location-dot"></i> Boston,
-                          MA
+                          <i class="fa-solid fa-location-dot"></i> {{$listing->location}}
                       </div>
                   </div>
               </div>
-          </div>
+            </div>
+            
+          
           @endforeach
-          @endsection
+            <div class="mt-6 p-4">
+            {{$listings->links()}}
+            </div>
 
+          @endsection
+          

@@ -5,13 +5,14 @@
 <div class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24">
                     <header class="text-center">
                         <h2 class="text-2xl font-bold uppercase mb-1">
-                            Create a Coffee
+                            Edit Coffee
                         </h2>
-                        <p class="mb-4">Post about your coffee</p>
+                        <p class="mb-4">Edit your coffee:{{$listing->coffeename}}</p>
                     </header>
 
-                    <form method ="POST" action="/listings" enctype="multipart/form-data" >
+                    <form method ="POST" action="/listings/{{$listing->id}}" enctype="multipart/form-data" >
                         @csrf
+                        @method("PUT")
                         <div class="mb-6">
                             <label
                                 for="coffeename"
@@ -19,7 +20,7 @@
                                 >Coffee Name</label >
                             <input
                                 type="text"
-                                class="border border-gray-200 rounded p-2 w-full" name="coffeename" value="{{old('coffeename')}}"/>
+                                class="border border-gray-200 rounded p-2 w-full" name="coffeename" value="{{$listing->coffeename}}"/>
                                 
                                 @error('coffeename') 
                                 <p class="text-red-500 text-xs mt-1">{{$message}}</p>
@@ -33,7 +34,7 @@
                             <input
                                 type="text"
                                 class="border border-gray-200 rounded p-2 w-full"
-                                name="title" value="{{old('title')}}"
+                                name="title" value="{{$listing->title}}"
                                 placeholder="Example: Starbucks-Nestle-Maxwell"/>
 
                                 @error('title') 
@@ -52,7 +53,7 @@
                                 type="text"
                                 class="border border-gray-200 rounded p-2 w-full"
                                 name="category"
-                                value="{{old('category')}}"
+                                value="{{$listing->category}}"
                                 placeholder="black-white-strong"/>
 
                                 @error('category') 
@@ -70,7 +71,7 @@
                                 type="text"
                                 class="border border-gray-200 rounded p-2 w-full"
                                 name="location"
-                                value="{{old('location')}}"
+                                value="{{$listing->location}}"
                                 placeholder="Example: Remote, Boston MA, etc"/>
 
                                 @error('location') 
@@ -86,7 +87,7 @@
                                 type="text"
                                 class="border border-gray-200 rounded p-2 w-full"
                                 name="email" 
-                                value="{{old('email')}}"
+                                value="{{$listing->email}}"
                                 />
 
                                 @error('email') 
@@ -105,7 +106,7 @@
                                 type="text"
                                 class="border border-gray-200 rounded p-2 w-full"
                                 name="website"
-                                value="{{old('website')}}"
+                                value="{{$listing->website}}"
                                 />
 
                                 @error('website') 
@@ -121,7 +122,7 @@
                                 type="text"
                                 class="border border-gray-200 rounded p-2 w-full"
                                 name="type"
-                                value="{{old('type')}}"
+                                value="{{$listing->type}}"
                                 placeholder="Example: Laravel, Backend, Postgres, etc"/>
 
                                 @error('type') 
@@ -150,7 +151,7 @@
                             <textarea
                                 class="border border-gray-200 rounded p-2 w-full"
                                 name="description"
-                                {{old('description')}}"
+                                {{$listing->description}}"
                                 rows="10"
                                 placeholder="Include tasks, requirements, salary, etc"
                             ></textarea>
@@ -164,7 +165,7 @@
                             <button
                                 class="bg-laravel text-white rounded py-2 px-4 hover:bg-black"
                             >
-                                Brew !
+                                Edit Brew !
                             </button>
 
                             <a href="/index" class="text-black ml-4"> Back </a>

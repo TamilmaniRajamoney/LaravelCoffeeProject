@@ -1,10 +1,8 @@
 
-@extends('listings.layout')  
-{{-- @include('partials._hero') 
-@include('partials._search')   --}}
-       
-
-          <a href="index.html" class="inline-block text-black ml-4 mb-4"
+@extends('listings.layout')
+  @section('content')   
+  
+          <a href="/index" class="inline-block text-black ml-4 mb-4"
           ><i class="fa-solid fa-arrow-left"></i> Back
       </a>
       <div class="mx-4">
@@ -80,10 +78,31 @@
                               target="_blank"
                               class="block bg-black text-white py-2 rounded-xl hover:opacity-80"
                               ><i class="fa-solid fa-globe"></i> Visit
-                              Website</a
-                          >
+                              Website</a>
+
+                              <a
+                              href="/listings/{{$listing->id}}/edit"
+                              target="_blank"
+                              class="block bg-black text-white py-2 rounded-xl hover:opacity-80"
+                              ><i class="fa-solid fa-pencil"></i> Edit</a>
+
+                              <form method="Post" action="/listings/{{$listing->id}}">
+                                @csrf
+                                @method('DELETE')
+                              <button class="text-red-500">
+                              <i class="fa-solid fa-trash"></i> Delete</a>
+                        </form>
+                                {{-- <a </a>
+                                 <i- class="fa-solid fa-globe"></i> edit
+                              </a> --}}
+                        
                       </div>
                   </div>
               </div>
           </div>
       </div>
+      <div>
+        
+                            
+      </div>
+      @endsection 
