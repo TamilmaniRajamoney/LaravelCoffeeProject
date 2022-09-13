@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\Listing;
+use App\Models\User;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -51,8 +53,14 @@ Route::post('/listings','App\Http\Controllers\ListingController@store');
 //Single listing
 Route::get('/listings/{listing}','App\Http\Controllers\ListingController@show');
 
+//Show Register Form 
+Route::get('/register','App\Http\Controllers\UserController@create');
 
+//create new user 
+Route::post('/users','App\Http\Controllers\UserController@store');
 
+//Logout user  
+Route::post('/logout','App\Http\Controllers\UserController@logout');
 
 
 
