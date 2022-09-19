@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Listing;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -53,13 +54,17 @@ class ListingController extends Controller
     'email'=>'required',
     'website'=>'required',
     'location'=>'required',
+    
     ]);
-
+    
+    // dd($formInput);
     if($request->hasFile('cover')){
       //Storage::disk('public')->put('covers',$request->file('cover'));
        $formInput['cover']= $request->file('cover')->store('covers','public');
       
     }
+
+     $formInput['user_id']= auth()->id();
 
     Listing::create($formInput);
 
@@ -78,7 +83,11 @@ class ListingController extends Controller
 
   //Update coffee
   public function update(Request $request, Listing $listing){
-    
+    //make sure logged in user is owner
+    if($listing->user_id != auth()->id()) {
+       abort(403,'Unauthorized Action');
+    }
+
     // // die();
     //  dd($request->all());
     $formInput= $request->validate([
@@ -106,13 +115,26 @@ class ListingController extends Controller
 
 //Delete coffee
   public function destroy(Listing $listing){
+
+    if($listing->user_id != auth()->id()) {
+      abort(403,'Unauthorized Action');
+   }
+    
       $listing->delete();
     // dd($listing);
   return redirect('index')->with('message', 'Brew deleted Successfully');
 
 }
 
+//relationship to user 
+public function user(){
+  return $this ->belongsTo(User::class,'user_id');
+}
 
+//Manage Listings
+public function manage(){
+  return view('listings.manage',['listings' => auth()->user()->listings()->get()]);
+}
 
 
 

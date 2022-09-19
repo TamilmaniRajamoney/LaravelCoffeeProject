@@ -15,6 +15,7 @@ class CreateListingsTable extends Migration
     {
         Schema::create('listings', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('coffeename');
             $table->string('cover')->nullable();
             $table->string('title');

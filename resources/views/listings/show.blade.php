@@ -80,7 +80,7 @@
                               ><i class="fa-solid fa-globe"></i> Visit
                               Website</a>
 
-                              <a
+                              {{-- <a
                               href="/listings/{{$listing->id}}/edit"
                               target="_blank"
                               class="block bg-black text-white py-2 rounded-xl hover:opacity-80"
@@ -91,7 +91,7 @@
                                 @method('DELETE')
                               <button class="text-red-500">
                               <i class="fa-solid fa-trash"></i> Delete</a>
-                        </form>
+                        </form> --}}
                                 {{-- <a </a>
                                  <i- class="fa-solid fa-globe"></i> edit
                               </a> --}}

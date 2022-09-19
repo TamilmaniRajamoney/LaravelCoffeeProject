@@ -42,15 +42,37 @@ public function store(Request $request){
   //Logout user 
 public function logout(Request $request){
     auth()->logout();
-
-
     $request->session()->invalidate();
-    $request->session()->regenrateToken();
+     $request->session()->flush();
 
     return redirect('/index')->with('message','You have been logged out!');
 
   }
+//user login
+public function login(){
+  return view('users.login');
+}
 
+//Authenticate
+public function authenticate(Request $request){
+  $formInput = $request->validate([
+    'email'=>['required','email'],
+    'password'=>['required']
+  ]);
+    //  dd($request->all());
 
+if(auth()->attempt($formInput)){
+  $request->session()->regenerate();
+
+return redirect('/index')->with('message','You are logged in!');
+}
+return back()->withErrors(['email'=>'Invalid'])->onlyInput();
+
+}
+
+//relationship with Listings 
+public function listings(){
+  return $this ->hasMany(Listing::class,'user_id');
+}
 
 }

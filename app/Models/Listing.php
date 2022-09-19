@@ -10,7 +10,7 @@ class Listing extends Model
     
     use HasFactory;
 
-    protected $fillable =['coffeename','title','type','category','description', 'email','website', 'location'];
+    protected $fillable =['user_id','coffeename','title','type','category','description', 'email','website', 'location'];
     
     public function scopeFilter($query, array $filter){
 

@@ -33,7 +33,7 @@
          <x-flash-message />
          <body class="mb-48">
              <nav class="flex justify-between items-center mb-4">
-                 <a href="index.html"
+                 <a href="/index"
                      ><img class="w-24" src="img/coffee-logo.jpeg" alt="" class="logo"/></a>
                  <ul class="flex space-x-6 mr-6 text-lg">
                     @auth

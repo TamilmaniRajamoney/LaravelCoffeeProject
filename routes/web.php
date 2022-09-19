@@ -36,32 +36,40 @@ Route::get('/index','App\Http\Controllers\ListingController@index');
 Route::get('/coffeeDesc','App\Http\Controllers\TestController@getDesc');
 
 //Show Create Form 
-Route::get('/listings/create','App\Http\Controllers\ListingController@create');
+Route::get('/listings/create','App\Http\Controllers\ListingController@create')->middleware('auth');
 
 //Show Edit Form 
-Route::get('/listings/{listing}/edit','App\Http\Controllers\ListingController@edit');
+Route::get('/listings/{listing}/edit','App\Http\Controllers\ListingController@edit')->middleware('auth');
 
 //Delete coffee 
-Route::delete('/listings/{listing}','App\Http\Controllers\ListingController@destroy');
+Route::delete('/listings/{listing}','App\Http\Controllers\ListingController@destroy')->middleware('auth');
 
 //Update coffee
-Route::put('/listings/{listing}','App\Http\Controllers\ListingController@update');
+Route::put('/listings/{listing}','App\Http\Controllers\ListingController@update')->middleware('auth');
 
 //Store
-Route::post('/listings','App\Http\Controllers\ListingController@store');
+Route::post('/listings','App\Http\Controllers\ListingController@store')->middleware('auth');
+
+//Manage Listings 
+Route::get('/listings/manage','App\Http\Controllers\ListingController@manage')->middleware('auth');
 
 //Single listing
 Route::get('/listings/{listing}','App\Http\Controllers\ListingController@show');
 
 //Show Register Form 
-Route::get('/register','App\Http\Controllers\UserController@create');
+Route::get('/register','App\Http\Controllers\UserController@create')->middleware('guest');
 
 //create new user 
 Route::post('/users','App\Http\Controllers\UserController@store');
 
 //Logout user  
-Route::post('/logout','App\Http\Controllers\UserController@logout');
+Route::post('/logout','App\Http\Controllers\UserController@logout')->middleware('auth');
 
+//show login form  
+Route::get('/login','App\Http\Controllers\UserController@login')->name('login');
+
+// login  
+Route::post('/users/authenticate','App\Http\Controllers\UserController@authenticate');
 
 
 
